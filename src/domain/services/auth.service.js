@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../entities/user.entitie");
+const User = require("../entities/user.entities");
 
 class AuthService {
   constructor(userRepository) {
