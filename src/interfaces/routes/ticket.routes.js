@@ -5,5 +5,6 @@ const router = express.Router();
 const ticketController = new TicketController();
 
 router.post("/book", ticketController.bookTicket);
+router.get("/book/:ticketId", ticketController.getTicketsById);
 
 module.exports = router;

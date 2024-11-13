@@ -1,3 +1,4 @@
+const TicketDTO = require("../dtos/ticket.dto");
 const Ticket = require("../entities/ticket.entities");
 
 class TicketService {
@@ -7,23 +8,33 @@ class TicketService {
   }
 
   async bookTicket(userId, trainId, seatNumber, price) {
-    const user = await this.userRepository.findById(userId);
+    const user = await this.userRepository.findUserById(userId);
+
     if (!user) {
       throw new Error("User not found");
     }
 
-    const ticket = new Ticket(
-      null,
-      userId,
-      trainId,
-      seatNumber,
-      price,
-      "booked"
-    );
+    const ticketEntities = new Ticket({
+      user_id: userId,
+      train_id: trainId,
+      seat_number: seatNumber,
+      price: price,
+      status: "booked",
+    });
 
-    await this.ticketRepository.bookTicket(ticket);
+    const ticket = await this.ticketRepository.bookTicket(ticketEntities);
 
-    return ticket;
+    return TicketDTO.fromDomain(ticket);
+  }
+
+  async getTicketById(ticketId) {
+    const ticket = await this.ticketRepository.getTicketById(ticketId);
+
+    if (!ticket) {
+      throw new Error("Ticket not found");
+    }
+
+    return TicketDTO.fromDomain(ticket);
   }
 }
 

@@ -9,20 +9,20 @@ class TicketRepositoryImpl extends TicketRepository {
       VALUES ($1, $2, $3, $4, $5) RETURNING *;
     `;
     const { rows } = await db.pool.query(query, [
-      ticketData.userId,
-      ticketData.trainId,
-      ticketData.seatNumber,
+      ticketData.user_id,
+      ticketData.train_id,
+      ticketData.seat_number,
       ticketData.price,
       ticketData.status,
     ]);
 
-    return new Ticket(...rows[0]);
+    return new Ticket(rows[0]);
   }
 
   async getTicketById(ticketId) {
     const query = "SELECT * FROM tickets WHERE ticket_id = $1";
     const { rows } = await db.pool.query(query, [ticketId]);
-    return rows.length ? new Ticket(...rows[0]) : null;
+    return rows.length ? new Ticket(rows[0]) : null;
   }
 }
 

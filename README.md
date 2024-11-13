@@ -9,7 +9,7 @@
 
 # Description
 
-## TThis is project coding simple Domain-Driven Design
+## This is project coding simple Domain-Driven Design
 
 # DDD (Domain-Driven Design)
 

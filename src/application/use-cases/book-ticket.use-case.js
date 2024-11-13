@@ -1,12 +1,12 @@
-const TicketRepository = require("../../domain/repositories/ticket.repository");
-const UserRepository = require("../../domain/repositories/user.repository");
 const TicketService = require("../../domain/services/ticket.service");
+const TicketRepositoryImpl = require("../../infrastructure/repositories/ticket.repository");
+const PostgresUserRepository = require("../../infrastructure/repositories/user.repository");
 
 class BookTicketUseCase {
   constructor() {
     this.ticketService = new TicketService(
-      new TicketRepository(),
-      new UserRepository()
+      new TicketRepositoryImpl(),
+      new PostgresUserRepository()
     );
   }
 
@@ -20,4 +20,4 @@ class BookTicketUseCase {
   }
 }
 
-module.exports = BookTicketUseCase;
+module.exports = new BookTicketUseCase();

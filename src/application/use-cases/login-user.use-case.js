@@ -1,4 +1,3 @@
-const UserRepository = require("../../domain/repositories/user.repository");
 const AuthService = require("../../domain/services/auth.service");
 const PostgresUserRepository = require("../../infrastructure/repositories/user.repository");
 
