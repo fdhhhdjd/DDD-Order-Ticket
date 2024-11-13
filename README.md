@@ -8,7 +8,37 @@
 </p>
 
 # Description
+
 ## TThis is project coding simple Domain-Driven Design
+
+# DDD (Domain-Driven Design)
+
+![DDD](./docs/assets/ddd_layers.png)
+
+# Structure
+
+```
+src/
+├── domain/                   # Business logic and rules
+│   ├── entities/             # Business entities (User, Ticket, ...)
+│   ├── repositories/         # Interfaces for data access
+│   └── services/             # Business services
+│
+├── application/              # Application processing, managing use cases
+│   └── use-cases/            # Specific use cases of the system
+│
+├── infrastructure/           # Supporting components and connections
+│   ├── database/             # Database connections and configurations
+│   └── repositories/         # Concrete implementations of repositories
+│
+├── interfaces/               # Interface layer, API for users or systems
+│   ├── controllers/          # Logic controllers for handling requests
+│   ├── routes/               # API routes
+│   └── middlewares/          # Middleware (auth, logging, ...)
+│
+└── server.js                 # Main application startup file
+
+```
 
 ## Tài Khoản Donate li Cf để có động lực code cho anh em tham khảo 😄😄
 
