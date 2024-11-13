@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../entities/user.entities");
+const UserDTO = require("../dtos/user.dto");
 
 class AuthService {
   constructor(userRepository) {
@@ -10,18 +11,23 @@ class AuthService {
 
   async register(name, email, username, password) {
     const passwordHash = await bcrypt.hash(password, 10);
-    const user = new User({
+    const userEntities = new User({
       name,
       email,
       username,
       password_hash: passwordHash,
     });
-    return await this.userRepository.createUser(user);
+    const user = await this.userRepository.createUser(userEntities);
+
+    return UserDTO.fromDomain(user, {
+      includeUsername: true,
+      includeToken: false,
+    });
   }
 
   async login(username, password) {
     const user = await this.userRepository.findByUsername(username);
-    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+    if (!user || !(await bcrypt.compare(password, user.password_hash))) {
       throw new Error("Invalid username or password");
     }
 
@@ -31,7 +37,10 @@ class AuthService {
       { expiresIn: "1h" }
     );
 
-    return { token, user };
+    return UserDTO.fromDomain(Object.assign({}, user, { token }), {
+      includeUsername: false,
+      includeToken: true,
+    });
   }
 }
 
