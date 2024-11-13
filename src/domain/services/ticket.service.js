@@ -1,4 +1,4 @@
-const Ticket = require("../entities/Ticket");
+const Ticket = require("../entities/ticket.entities");
 
 class TicketService {
   constructor(ticketRepository, userRepository) {

@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 const User = require("../entities/user.entities");
 
 class AuthService {
@@ -9,7 +10,12 @@ class AuthService {
 
   async register(name, email, username, password) {
     const passwordHash = await bcrypt.hash(password, 10);
-    const user = new User(null, name, email, username, passwordHash);
+    const user = new User({
+      name,
+      email,
+      username,
+      password_hash: passwordHash,
+    });
     return await this.userRepository.createUser(user);
   }
 

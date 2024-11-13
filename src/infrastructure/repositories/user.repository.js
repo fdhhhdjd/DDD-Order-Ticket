@@ -1,32 +1,54 @@
-const { pool } = require("../database/config");
-const UserRepository = require("../../domain/repositories/UserRepository");
-const User = require("../../domain/entities/User");
+const db = require("../database/db");
+const User = require("../../domain/entities/user.entities");
+const UserRepository = require("../../domain/repositories/user.repository");
 
-class UserRepositoryImpl extends UserRepository {
-  async findByUsername(username) {
-    const query = "SELECT * FROM users WHERE username = $1";
-    const { rows } = await pool.query(query, [username]);
-    return rows.length ? new User(...rows[0]) : null;
-  }
-
-  async findById(userId) {
-    const query = "SELECT * FROM users WHERE user_id = $1";
-    const { rows } = await pool.query(query, [userId]);
-    return rows.length ? new User(...rows[0]) : null;
-  }
-
-  async createUser(userData) {
-    const query = `
-      INSERT INTO users (username, email, password_hash)
-      VALUES ($1, $2, $3) RETURNING *;
-    `;
-    const { rows } = await pool.query(query, [
-      userData.username,
-      userData.email,
-      userData.passwordHash,
+class PostgresUserRepository extends UserRepository {
+  async findUserById(id) {
+    const result = await db.pool.query("SELECT * FROM users WHERE id = $1", [
+      id,
     ]);
-    return new User(...rows[0]);
+    if (result.rows.length === 0) return null;
+    const row = result.rows[0];
+    return new User({
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      username: row.username,
+      password_hash: row.password_hash,
+    });
+  }
+
+  async findByUsername(username) {
+    const result = await db.pool.query(
+      "SELECT * FROM users WHERE username = $1",
+      [username]
+    );
+    if (result.rows.length === 0) return null;
+    const row = result.rows[0];
+    return new User({
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      username: row.username,
+      password_hash: row.password_hash,
+    });
+  }
+
+  async createUser(user) {
+    const result = await db.pool.query(
+      "INSERT INTO users (name, email, username, password_hash) VALUES ($1, $2, $3, $4) RETURNING *",
+      [user.name, user.email, user.username, user.password_hash]
+    );
+    const row = result.rows[0];
+
+    return new User({
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      username: row.username,
+      password_hash: row.password_hash,
+    });
   }
 }
 
-module.exports = UserRepositoryImpl;
+module.exports = PostgresUserRepository;
