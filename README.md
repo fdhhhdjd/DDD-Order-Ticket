@@ -15,6 +15,32 @@
 
 # Structure
 
+## Tiếng Việt 🇻🇳
+
+```
+src/
+├── domain/                   # Logic và quy tắc nghiệp vụ
+│   ├── entities/             # Các thực thể nghiệp vụ (User, Ticket, ...)
+│   ├── repositories/         # Các giao diện truy cập dữ liệu
+│   └── services/             # Các dịch vụ nghiệp vụ
+│
+├── application/              # Xử lý ứng dụng, quản lý các trường hợp sử dụng
+│   └── use-cases/            # Các trường hợp sử dụng cụ thể của hệ thống
+│
+├── infrastructure/           # Các thành phần hỗ trợ và kết nối
+│   ├── database/             # Kết nối và cấu hình cơ sở dữ liệu
+│   └── repositories/         # Các triển khai cụ thể của repositories
+│
+├── interfaces/               # Lớp giao diện, API cho người dùng hoặc hệ thống
+│   ├── controllers/          # Các bộ điều khiển logic để xử lý yêu cầu
+│   ├── routes/               # Các tuyến API
+│   └── middlewares/          # Middleware (xác thực, ghi nhật ký, ...)
+│
+└── server.js                 # Tệp khởi động ứng dụng chính
+```
+
+## English 🇬🇧
+
 ```
 src/
 ├── domain/                   # Business logic and rules
