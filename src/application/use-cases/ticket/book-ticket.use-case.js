@@ -1,6 +1,6 @@
-const TicketService = require("../../domain/services/ticket.service");
-const TicketRepositoryImpl = require("../../infrastructure/repositories/ticket.repository");
-const PostgresUserRepository = require("../../infrastructure/repositories/user.repository");
+const TicketService = require("../../../domain/services/ticket.service");
+const TicketRepositoryImpl = require("../../../infrastructure/repositories/ticket.repository");
+const PostgresUserRepository = require("../../../infrastructure/repositories/user.repository");
 
 class BookTicketUseCase {
   constructor() {

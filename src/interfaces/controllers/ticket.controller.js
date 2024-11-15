@@ -1,5 +1,5 @@
-const bookTicketUseCase = require("../../application/use-cases/book-ticket.use-case");
-const getTicketsByIdUseCase = require("../../application/use-cases/get-tickets-by-id.use-case");
+const bookTicketUseCase = require("../../application/use-cases/ticket/book-ticket.use-case");
+const getTicketsByIdUseCase = require("../../application/use-cases/ticket/get-tickets-by-id.use-case");
 
 class TicketController {
   async bookTicket(req, res) {

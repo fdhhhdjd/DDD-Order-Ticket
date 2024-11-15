@@ -1,5 +1,5 @@
-const registerUseCase = require("../../application/use-cases/register-user.use-case");
-const loginUseCase = require("../../application/use-cases/login-user.use-case");
+const registerUseCase = require("../../application/use-cases/user/register-user.use-case");
+const loginUseCase = require("../../application/use-cases/user/login-user.use-case");
 
 class AuthController {
   async register(req, res) {
