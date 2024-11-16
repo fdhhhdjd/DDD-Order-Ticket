@@ -13,7 +13,7 @@
 
 ![DDD](./docs/assets/ddd_layers.png)
 
-# Structure
+# Folder Structure 
 
 ## Tiếng Việt 🇻🇳
 
