@@ -17,5 +17,8 @@
     "expresss": "^0.0.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }
