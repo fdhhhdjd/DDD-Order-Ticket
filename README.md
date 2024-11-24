@@ -15,7 +15,7 @@
 
 # Structure
 
-## Tiếng Việt 🇻🇳
+## Vietnamese 🇻🇳
 
 ```
 src/
