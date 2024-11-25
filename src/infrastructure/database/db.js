@@ -4,7 +4,7 @@ const {
   MAX_CONNECTIONS,
   IDLE_TIMEOUT_MILLS,
   CONNECTION_TIMEOUT_MILLS,
-} = require("../../share/constants");
+} = require("../../shared/constants");
 
 class Database {
   constructor() {

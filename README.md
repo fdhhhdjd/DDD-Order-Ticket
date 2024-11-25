@@ -36,6 +36,9 @@ src/
 │   ├── routes/               # Các tuyến API
 │   └── middlewares/          # Middleware (xác thực, ghi nhật ký, ...)
 │
+├── shared/                   # Các tài nguyên dùng chung
+│   └── constants/            # Các hằng số dùng chung
+│
 └── server.js                 # Tệp khởi động ứng dụng chính
 ```
 
@@ -60,8 +63,10 @@ src/
 │   ├── routes/               # API routes
 │   └── middlewares/          # Middleware (auth, logging, ...)
 │
+├── shared/                   # Shared resources
+│   └── constants/            # Shared constants
+│
 └── server.js                 # Main application startup file
-
 ```
 
 ## Tài Khoản Donate li Cf để có động lực code cho anh em tham khảo 😄😄
