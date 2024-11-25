@@ -1,4 +1,10 @@
 const { Pool } = require("pg");
+const {
+  SSL_REJECT_UNAUTHORIZED,
+  MAX_CONNECTIONS,
+  IDLE_TIMEOUT_MILLS,
+  CONNECTION_TIMEOUT_MILLS,
+} = require("../../share/constants");
 
 class Database {
   constructor() {
@@ -10,14 +16,15 @@ class Database {
       database: process.env.DB_NAME, // Database name
       ssl: {
         // SSL configuration for secure connection
-        rejectUnauthorized: false, // Accept all SSL certificates (for cloud services like CockroachDB)
+        rejectUnauthorized: SSL_REJECT_UNAUTHORIZED, // Accept all SSL certificates (for cloud services like CockroachDB)
       },
-      max: 20, // Maximum number of connections
-      idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
-      connectionTimeoutMillis: 2000, // Return an error after 2 seconds if connection could not be established
+      max: MAX_CONNECTIONS, // Maximum number of connections
+      idleTimeoutMillis: IDLE_TIMEOUT_MILLS, // Close idle clients after 30 seconds
+      connectionTimeoutMillis: CONNECTION_TIMEOUT_MILLS, // Return an error after 2 seconds if connection could not be established
     });
   }
 
+  // This is method use to connect try to connect to the database
   async connect() {
     try {
       const client = await this.pool.connect(); // Get a client from the pool
