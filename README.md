@@ -38,6 +38,7 @@ src/
 │
 ├── shared/                   # Các tài nguyên dùng chung
 │   └── constants/            # Các hằng số dùng chung
+|   └── .../                  # Còn rất nhiều
 │
 └── server.js                 # Tệp khởi động ứng dụng chính
 ```
@@ -65,6 +66,7 @@ src/
 │
 ├── shared/                   # Shared resources
 │   └── constants/            # Shared constants
+|   └── .../                  # Still remaining many folder shared
 │
 └── server.js                 # Main application startup file
 ```
