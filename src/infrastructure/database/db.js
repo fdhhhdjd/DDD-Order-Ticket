@@ -1,23 +1,25 @@
 const { Pool } = require("pg");
+
 const {
-  SSL_REJECT_UNAUTHORIZED,
   MAX_CONNECTIONS,
   IDLE_TIMEOUT_MILLS,
   CONNECTION_TIMEOUT_MILLS,
 } = require("../../shared/constants");
 
+const {
+  pgConfig: { DatabaseName, Host, Password, Port, User, SSL },
+} = require("../../shared/configs/db.config");
+
 class Database {
   constructor() {
     this.pool = new Pool({
-      host: process.env.DB_HOST, // Host
-      port: process.env.DB_PORT, // Port
-      user: process.env.DB_USER, // Database username
-      password: process.env.DB_PASSWORD, // Database password
-      database: process.env.DB_NAME, // Database name
-      ssl: {
-        // SSL configuration for secure connection
-        rejectUnauthorized: SSL_REJECT_UNAUTHORIZED, // Accept all SSL certificates (for cloud services like CockroachDB)
-      },
+      host: Host, // Host
+      port: Port, // Port
+      user: User, // Database username
+      password: Password, // Database password
+      database: DatabaseName, // Database name
+      // SSL configuration for secure connection
+      ssl: SSL,
       max: MAX_CONNECTIONS, // Maximum number of connections
       idleTimeoutMillis: IDLE_TIMEOUT_MILLS, // Close idle clients after 30 seconds
       connectionTimeoutMillis: CONNECTION_TIMEOUT_MILLS, // Return an error after 2 seconds if connection could not be established
