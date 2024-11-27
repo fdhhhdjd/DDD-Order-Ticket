@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../entities/user.entities");
 const UserDTO = require("../dtos/user.dto");
+const { JWT_SECRET } = require("../../shared/constants");
 
 class AuthService {
   constructor(userRepository) {
@@ -33,7 +34,7 @@ class AuthService {
 
     const token = jwt.sign(
       { id: user.id, username: user.username },
-      process.env.JWT_SECRET,
+      JWT_SECRET,
       { expiresIn: "2h" }
     );
 
