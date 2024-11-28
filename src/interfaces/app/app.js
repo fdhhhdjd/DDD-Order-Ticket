@@ -1,8 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
 
+const { getProd } = require("../../shared/utils");
+
 const app = express();
-app.use(morgan("dev"));
+app.use(morgan(getProd() ? "combined" : "dev"));
 app.use(express.json());
 
 const Database = require("../../infrastructure/database/db");

@@ -7,4 +7,10 @@ module.exports = {
 
   // JWT
   JWT_SECRET: process.env.JWT_SECRET || "secret",
+
+  // ENV
+  ENV: {
+    PROD: "prod",
+    DEV: "dev",
+  },
 };
